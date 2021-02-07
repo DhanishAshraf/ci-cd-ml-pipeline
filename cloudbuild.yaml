@@ -1,10 +1,10 @@
 steps:
   # build the container image
   - name: 'eu.gcr.io/cloud-builders/docker'
-  - args: ['build', '-t', 'eu.gcr.io/$PROJECT-ID/modelpipeline:$COMMIT_SHA', '.']
+    args: ['build', '-t', 'eu.gcr.io/$PROJECT-ID/modelpipeline:$COMMIT_SHA', '.']
   # push the container image to Google Container Registry
   - name: 'eu.gcr.io/cloud-builders/docker'
-  - args: ['push', 'eu.gcr.io/$PROJECT-ID/modelpipeline:$COMMIT_SHA']
+    args: ['push', 'eu.gcr.io/$PROJECT-ID/modelpipeline:$COMMIT_SHA']
   # deploy container image to Google Cloud Run
   - name: 'eu.gcr.io/google.com/cloudsdktool/cloud-sdk'
-  - args: '[run', 'deploy', 'diabetes_classifier', '--image', 'eu.gcr.io/$PROJECT-ID/modelpipeline:$COMMIT_SHA', '--platform', 'managed']
+    args: ['run', 'deploy', 'diabetes_classifier', '--image', 'eu.gcr.io/$PROJECT-ID/modelpipeline:$COMMIT_SHA', '--platform', 'managed']
