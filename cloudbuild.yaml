@@ -7,4 +7,4 @@ steps:
     args: ['push', 'gcr.io/$PROJECT_ID/modelpipeline:$COMMIT_SHA']
   # deploy container image to Google Cloud Run
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['run', 'deploy', 'diabetes-classifier', '--image', 'gcr.io/$PROJECT_ID/modelpipeline:$COMMIT_SHA', '--region', 'europe-west2-a', '--platform', 'managed']
+    args: ['run', 'deploy', 'diabetes-classifier', '--image', 'gcr.io/$PROJECT_ID/modelpipeline:$COMMIT_SHA', '--region', 'europe-west1', '--platform', 'managed']
