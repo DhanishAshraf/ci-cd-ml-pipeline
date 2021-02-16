@@ -29,8 +29,9 @@ class TestModel:
 		"""Test if model is atleast as good as original model on test data"""
 		self.load_data()
 		self.load_model()
+		threshold = 0.80 #0.78 to pass
 		score = self.model.score(self.X_test, self.y_test)
-		is_above_threshold = True if score >= 0.78 else False
+		is_above_threshold = True if score >= threshold else False
 		assert is_above_threshold is True
 
 		
