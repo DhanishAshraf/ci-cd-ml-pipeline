@@ -3,7 +3,7 @@ steps:
   - name: python:3.7
     id: INSTALL-TEST-REQUIREMENTS
     entrypoint: python3.7
-    args: ['-m', 'pip', '-t', '.', 'install', '-r', 'tests/test_requirements.txt']
+    args: ['-m', 'pip', 'install', '-t', '.', '-r', 'tests/test_requirements.txt']
   # Run pytests
   - name: python:3.7
     id: RUN-MODEL-TESTS
