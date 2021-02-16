@@ -1,10 +1,27 @@
 steps:
-  # build the container image
+  # Run some tests on the model before bulding the container image - installing requirements
+  - name: python:3.7
+    id: INSTALL-TEST-REQUIREMENTS
+    entrypoint: python3
+    args: ['-m', 'pip', 'install', '-r', 'tests/test_requirements.txt']
+  # Run pytests
+  - name: python:3.7
+    id: RUN-MODEL-TESTS
+    entrypoint: python3
+    args: ['-m', 'pytest', 'tests/test_model.py']
+    waitFor: ['INSTALL-TEST-REQUIREMENTS']
+  # build the container image if pytests pass
   - name: 'gcr.io/cloud-builders/docker'
+    id: BUILD-CONTAINER-IMG
     args: ['build', '-t', 'gcr.io/$PROJECT_ID/modelpipeline:$COMMIT_SHA', '.']
+    waitFor: ['RUN-MODEL-TESTS']
   # push the container image to Google Container Registry
   - name: 'gcr.io/cloud-builders/docker'
+    id: PUSH-CONTAINER-IMG
     args: ['push', 'gcr.io/$PROJECT_ID/modelpipeline:$COMMIT_SHA']
+    waitFor: ['BUILD-CONTAINER-IMG']
   # deploy container image to Google Cloud Run
   - name: 'gcr.io/cloud-builders/gcloud'
+    id: DEPLOY-CONTAINER-IMG
     args: ['run', 'deploy', 'diabetes-classifier', '--image', 'gcr.io/$PROJECT_ID/modelpipeline:$COMMIT_SHA', '--region', 'europe-west1', '--platform', 'managed']
+    waitFor: ['PUSH-CONTAINER-IMG']
