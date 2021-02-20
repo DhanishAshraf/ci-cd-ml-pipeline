@@ -1,6 +1,9 @@
 attrs==20.3.0
+certifi==2020.12.5
+chardet==4.0.0
 click==7.1.2
 Flask==1.1.2
+idna==2.10
 importlib-metadata==3.4.0
 iniconfig==1.1.1
 itsdangerous==1.1.0
@@ -16,11 +19,13 @@ pyparsing==2.4.7
 pytest==6.2.2
 python-dateutil==2.8.1
 pytz==2020.5
+requests==2.25.1
 scikit-learn==0.23.2
 scipy==1.6.0
 six==1.15.0
 threadpoolctl==2.1.0
 toml==0.10.2
 typing-extensions==3.7.4.3
+urllib3==1.26.3
 Werkzeug==1.0.1
 zipp==3.4.0

@@ -18,5 +18,5 @@ WORKDIR flask_app
 # which port will be published
 EXPOSE 8080
 
-# starts the application
+# starts the flask application
 CMD ["python", "app.py"] 
