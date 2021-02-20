@@ -8,7 +8,7 @@ steps:
   - name: python:3.7
     id: RUN-MODEL-TESTS
     entrypoint: python3.7
-    args: ['-m', 'pytest', 'tests/test_model.py']
+    args: ['-m', 'pytest', 'tests/model_tests.py']
     waitFor: ['INSTALL-TEST-REQUIREMENTS']
   # build the container image if pytests pass
   - name: 'gcr.io/cloud-builders/docker'
