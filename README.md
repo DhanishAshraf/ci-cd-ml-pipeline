@@ -44,19 +44,19 @@ This repository will allow Cloud Build to access the the necessary files.
 
 3. Next create the Cloud Build GitHub Trigger which will listen to the GitHub repository you just created for a Git Push execution. 
 This will then trigger the execution of the cloudbuild.yaml file which will start the build, test and deploy of the container application. 
-		To create the trigger, follow the instructions here:
-			https://cloud.google.com/build/docs/automating-builds/create-github-app-triggers
-		For the trigger settings:
-			Event: Push to a branch
-			Source: 
-				Branch: ^main$
-			Build configuration:
-				File type: Cloud Build configuration file (yaml or json)
-				Cloud Build configuration file location: cloudbuild.yaml
+	To create the trigger, follow the instructions here:
+		https://cloud.google.com/build/docs/automating-builds/create-github-app-triggers
+	For the trigger settings:
+		Event: Push to a branch
+		Source: 
+			Branch: ^main$
+		Build configuration:
+			File type: Cloud Build configuration file (yaml or json)
+			Cloud Build configuration file location: cloudbuild.yaml
 
-4. Cloud Build needs limited permissions to automatically deploy to a Cloud Run Serice. 
-		Follow the instruction here: 
-			https://cloud.google.com/build/docs/deploying-builds/deploy-cloud-run#console
+4. Cloud Build needs limited permissions to automatically deploy to a Cloud Run Serice.
+	Follow the instruction here: 
+		https://cloud.google.com/build/docs/deploying-builds/deploy-cloud-run#console
 
 	Now the trigger is setup, whenever a git push is executed to the git repository, 
 	Cloud Build will execute the cloudbuild.yaml file and deploy the containerized ML model.
@@ -70,12 +70,11 @@ This will then trigger the execution of the cloudbuild.yaml file which will star
 
 5. To get the test set, on your local machine run:
 	`src $ python3.7 tests/get_test_data.py`
-This will download and save the test data for you in the tests/data directory.
+	This will download and save the test data for you in the tests/data directory.
 
 6. Push the contents of this directory to your GitHub repository.
 This will trigger the Cloud Build process. The first time make take a while.
-You can view the status of the Cloud Build process in the console by going to Cloud Build > History
-	https://console.cloud.google.com/cloud-build/builds (make sure you are in the right project)
+You can view the status of the Cloud Build process in the console by going to Cloud Build > History - https://console.cloud.google.com/cloud-build/builds (make sure you are in the right project)
 Once it is done you will see a green tick next to the build.
 
 7. In cloud console go to Cloud Run to see your running services - https://console.cloud.google.com/run
