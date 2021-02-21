@@ -31,7 +31,7 @@ EvolveExpertEx4/
 ### How To Run:
 
 1. Create a GCP project (see https://support.google.com/googleapi/answer/6251787?hl=en#) with Cloud Build, Container Registry, Cloud Run and Resource Manager APIs enabled. 
-This can be done by searching for them within the GCP Console (https://console.cloud.google.com/) and clicking 'Enable'.
+	This can be done by searching for them within the GCP Console (https://console.cloud.google.com/) and clicking 'Enable'.
 
 	For more details on the GCP services:
 		* Cloud Build: Orchestates the entire pipleine - https://cloud.google.com/build#section-5
@@ -43,16 +43,16 @@ This can be done by searching for them within the GCP Console (https://console.c
 This repository will allow Cloud Build to access the the necessary files.
 
 3. Next create the Cloud Build GitHub Trigger which will listen to the GitHub repository you just created for a Git Push execution. 
-This will then trigger the execution of the cloudbuild.yaml file which will start the build, test and deploy of the container application. 
-	To create the trigger, follow the instructions here:
-		https://cloud.google.com/build/docs/automating-builds/create-github-app-triggers
-	For the trigger settings:
-		Event: Push to a branch
-		Source: 
-			Branch: ^main$
-		Build configuration:
-			File type: Cloud Build configuration file (yaml or json)
-			Cloud Build configuration file location: cloudbuild.yaml
+	This will then trigger the execution of the cloudbuild.yaml file which will start the build, test and deploy of the container application. 
+		To create the trigger, follow the instructions here:
+			https://cloud.google.com/build/docs/automating-builds/create-github-app-triggers
+		For the trigger settings:
+			Event: Push to a branch
+			Source: 
+				Branch: ^main$
+			Build configuration:
+				File type: Cloud Build configuration file (yaml or json)
+				Cloud Build configuration file location: cloudbuild.yaml
 
 4. Cloud Build needs limited permissions to automatically deploy to a Cloud Run Serice.
 	Follow the instruction here: 
