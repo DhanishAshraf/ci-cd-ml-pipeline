@@ -82,7 +82,7 @@ EvolveExpertEx4/
 		i. Activate Cloud Shell in the GCP console - see https://cloud.google.com/shell/docs/using-cloud-shell
 		ii. In the shell run the following command:
 		`$ curl -H "Authorization: Bearer $(gcloud auth print-identity-token)" \
-		 -H "Content-Type: application/json" \ 
+		 -H "Content-Type: application/json" \
 		 -X POST \
 		 -d '{"preg":1,"plas":90,"pres":62,"skin":12,"test":43,"mass":27.2,"pedi":0.58,"age":24}' <app_url>/predict`
 		 where app_url is the url from the previous step.
