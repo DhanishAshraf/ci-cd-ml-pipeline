@@ -1,27 +1,27 @@
 steps:
-  # Run some tests on the model before bulding the container image - installing requirements
-  - name: python:3.7
-    id: INSTALL-TEST-REQUIREMENTS
-    entrypoint: python3.7
-    args: ['-m', 'pip', 'install', '-t', '.', '-r', 'tests/test_requirements.txt']
-  # Run pytests
+  # Step 1: Installing python requirements to be able to run some tests on the model before bulding the container image
+  - name: python:3.7 # Using the pre-built python image to be able to run python commands
+    id: INSTALL-TEST-REQUIREMENTS # an ID to be able to refer to this step later on
+    entrypoint: python3.7 
+    args: ['-m', 'pip', 'install', '-t', '.', '-r', 'tests/test_requirements.txt'] # the command to run - pip install the packages listed in given file
+  # Step 2: Run pytests to ensure model is fit to be deployed
   - name: python:3.7
     id: RUN-MODEL-TESTS
     entrypoint: python3.7
     args: ['-m', 'pytest', 'tests/model_tests.py']
-    waitFor: ['INSTALL-TEST-REQUIREMENTS']
-  # build the container image if pytests pass
-  - name: 'gcr.io/cloud-builders/docker'
+    waitFor: ['INSTALL-TEST-REQUIREMENTS'] # Wait for the step with ID 'INSTALL-TEST-REQUIREMENTS' to complete before running this step
+  # Step 3: Build the Docker container image
+  - name: 'gcr.io/cloud-builders/docker' # Using the pre-built Docker image to be able to run Docker commands
     id: BUILD-CONTAINER-IMG
-    args: ['build', '-t', 'gcr.io/$PROJECT_ID/modelpipeline:$COMMIT_SHA', '.']
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/modelpipeline:$COMMIT_SHA', '.'] # Build the Docker image with name modelpipeline and set the tag to the commit sha from GitHub
     waitFor: ['RUN-MODEL-TESTS']
-  # push the container image to Google Container Registry
+  # Step 4: Push the container image to Google Container Registry
   - name: 'gcr.io/cloud-builders/docker'
     id: PUSH-CONTAINER-IMG
     args: ['push', 'gcr.io/$PROJECT_ID/modelpipeline:$COMMIT_SHA']
     waitFor: ['BUILD-CONTAINER-IMG']
-  # deploy container image to Google Cloud Run
-  - name: 'gcr.io/cloud-builders/gcloud'
+  # Step 5: Deploy Docker container image from Container Registry to Google Cloud Run
+  - name: 'gcr.io/cloud-builders/gcloud' # Using the pre-built Google Cloud image to run Google Cloud commands.
     id: DEPLOY-CONTAINER-IMG
-    args: ['run', 'deploy', 'diabetes-classifier', '--image', 'gcr.io/$PROJECT_ID/modelpipeline:$COMMIT_SHA', '--region', 'europe-west1', '--platform', 'managed']
+    args: ['run', 'deploy', 'diabetes-classifier', '--image', 'gcr.io/$PROJECT_ID/modelpipeline:$COMMIT_SHA', '--region', 'europe-west1', '--platform', 'managed'] # deploy the container from previous step and name the application diabetes-classifier
     waitFor: ['PUSH-CONTAINER-IMG']

@@ -1,7 +1,10 @@
 """ A simple flask application to serve the Model as an API.
 This application has not been fully tested and is just meant to serve as a simple way to host a model 
 for basic inputs.
-To run: src/flask_app $ python app.py
+
+To run: src/flask_app $ python3.7 app.py
+
+Python version: 3.7.3
 """
 
 from flask import Flask, request, jsonify

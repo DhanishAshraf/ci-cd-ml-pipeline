@@ -5,7 +5,11 @@ This script assumes you have already run the get_test_data.py file to get the te
 
 An example test to ensure the latest model is at least as good as the original model.
 Other tests could include checking for bias, looking at accuracy scores in more detail
-(e.g. confusion matrix), testing privacy concerns (is model leaking sensitive training data).
+(e.g. confusion matrix) and testing privacy concerns (is model leaking sensitive training data).
+
+To run: $ pytest tests/model_tests.py
+
+Python version: 3.7.3
 """
 
 import pandas as pd
