@@ -34,6 +34,7 @@ EvolveExpertEx4/
 	This can be done by searching for them within the GCP Console (https://console.cloud.google.com/) and clicking 'Enable'.
 
 	For more details on the GCP services:
+
 		* Cloud Build: Orchestates the entire pipleine - https://cloud.google.com/build#section-5
 		* Container Registry: Store, manage and secure Docker container images - https://cloud.google.com/container-registry
 		* Cloud Run: A managed serverless platform to deploy containerizer applications - https://cloud.google.com/run
@@ -63,7 +64,7 @@ This repository will allow Cloud Build to access the the necessary files.
 4. Cloud Build needs limited permissions to automatically deploy to a Cloud Run Serice.
 	Follow the instruction here: https://cloud.google.com/build/docs/deploying-builds/deploy-cloud-run#console
 
-	Now the trigger is setup, whenever a git push is executed to the git repository, 
+	Now the trigger is setup, whenever a `git push` is executed to the git repository, 
 	Cloud Build will execute the cloudbuild.yaml file and deploy the containerized ML model.
 
 	The cloudbuild.yaml file consists of 5 steps:
@@ -85,7 +86,7 @@ This will download and save the test data for you in the tests/data directory.
 	
 	This will trigger the Cloud Build process. The first time make take a while.
 	
-	You can view the status of the Cloud Build process in the console by going to Cloud Build > History - https://console.cloud.google.com/cloud-build/builds (make sure you are in the right project)
+	You can view the status of the Cloud Build process in the console by going to Cloud Build > History - https://console.cloud.google.com/cloud-build/builds (make sure you are in the right project).
 	Once it is done you will see a green tick next to the build.
 
 7. In cloud console go to Cloud Run to see your running services - https://console.cloud.google.com/run
@@ -95,8 +96,9 @@ This will download and save the test data for you in the tests/data directory.
 8. To query the model:
 
 	i. Activate Cloud Shell in the GCP console - see https://cloud.google.com/shell/docs/using-cloud-shell
-	
+
 	ii. In the shell run the following command:
+	
 	`$ curl -H "Authorization: Bearer $(gcloud auth print-identity-token)" \
 	 -H "Content-Type: application/json" \
 	 -X POST \
