@@ -1,9 +1,9 @@
 # A ML pipeline to support CI/CD of ML development. 
 
 Using Google Cloud Platform (GCP) this pipleline will:
-	- Store the binary of a machine learning model
-	- Run tests against it
-	- Promote to production
+	* Store the binary of a machine learning model
+	* Run tests against it
+	* Promote to production
 
 This pipeline works by automatically triggering a Google Cloud Build job every time the associated GitHub 
 repository receives a push and provided the tests pass the machine learning model will be deployed as a 
@@ -89,10 +89,10 @@ This repository will allow Cloud Build to access the the necessary files.
 5. To get the test set, on your local machine you need Python 3.x and the Python modules Pandas and Scikit-learn.
 	If you have you can skip step 1 (run these commands from the within the `src` folder in the terminal):
 
-		Step 1: `$ pip3 install -r tests/get_test_data_requirements.txt` # You can install these in a virtual environment if you want - https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/
-		Step 2: `$ python3 tests/get_test_data.py`
+		Step 1: $ pip3 install -r tests/get_test_data_requirements.txt # You can install these in a virtual environment if you want - https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/
+		Step 2: $ python3 tests/get_test_data.py
 
-	This will download and save the test data for you in the tests/data directory.
+	This will download and save the test data for you in the `tests/data` directory.
 
 6. Push the contents of the `src` directory to your GitHub repository:
 
@@ -103,7 +103,7 @@ This repository will allow Cloud Build to access the the necessary files.
 	git remote add origin https://<git_url>
 	git push -u origin main`
 	
-	Where `<git_url>` is the URL of your git repo created earlier.
+	where `<git_url>` is the URL of your git repo created earlier.
 
 	This will trigger the Cloud Build process. The first time make take a while.
 	
@@ -130,6 +130,10 @@ This repository will allow Cloud Build to access the the necessary files.
 	 
 	 where `app_url` is the URL from the previous step. 
 	 Click Authorize in the Authorize Cloud Shell prompt. 
+
+	 Now every time you make a push to the GitHub repository the Cloud Build process will run again 
+	 and the latest version of the container will be deployed. The Cloud Build trigger has the option to only
+	 watch for specific files within the repository which would be a better option in a real setting.
 
 
 
