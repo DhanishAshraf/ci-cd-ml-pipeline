@@ -96,12 +96,12 @@ This repository will allow Cloud Build to access the the necessary files.
 
 6. Push the contents of the `src` directory to your GitHub repository:
 
-	`cd src
-	git init
-	git commit -m "first commit"
-	git branch -M main
-	git remote add origin https://<git_url>
-	git push -u origin main`
+		cd src
+		git init
+		git commit -m "first commit"
+		git branch -M main
+		git remote add origin https://<git_url>
+		git push -u origin main
 	
 	where `<git_url>` is the URL of your git repo created earlier.
 
