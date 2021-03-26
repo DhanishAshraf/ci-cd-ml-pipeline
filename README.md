@@ -9,7 +9,7 @@ This pipeline works by automatically triggering a Google Cloud Build job every t
 repository receives a push and provided the tests pass the machine learning model will be deployed as a 
 Flask application within a Docker container on Google Cloud Run.
 
-Directory Tree:
+### Directory Tree:
 
 ```
 EvolveExpertEx4/
@@ -53,7 +53,7 @@ This repository will allow Cloud Build to access the the necessary files.
 	This will then trigger the execution of the cloudbuild.yaml file (explained below) which will start the build, 
 	test and deploy of the container application. 
 
-	To install the Cloud Build GitHub app (if you have not already) and then create the trigger follow the instructions here:
+	To install the Cloud Build GitHub App (if you have not already) and then create the trigger follow the instructions here:
 		https://cloud.google.com/build/docs/automating-builds/create-github-app-triggers
 
 	##### Notes:
@@ -86,8 +86,8 @@ This repository will allow Cloud Build to access the the necessary files.
 		Step 5. Deploy the Docker image as an application
 	For more details on the cloudbuild config file see: https://cloud.google.com/build/docs/build-config
 
-5. To get the test set, on your local machine you need Python 3.x and the Python modules Pandas and Scikit-learn.
-	If you have you can skip step 1 (run these commands from the within the `src` folder in the terminal):
+5. To get the test set, on your local machine you need Python 3.x and the Python modules pandas, scikit-learn and joblib.
+	If you have these you can skip step 1. (Run these commands from the within the `src` folder in the terminal):
 
 		Step 1: $ pip3 install -r tests/get_test_data_requirements.txt # You can install these in a virtual environment if you want - https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/
 		Step 2: $ python3 tests/get_test_data.py
